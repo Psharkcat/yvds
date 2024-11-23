@@ -43,7 +43,7 @@ This will install the `pytubefix` library, which is used for downloading media f
    If you want to download the audio (MP3 format), use the `-a` option followed by the YouTube video link:
    
    ```bash
-   main.py -a <video link>
+   main.py -a video_link
    ```
 
 - **To download video:**
@@ -51,7 +51,7 @@ This will install the `pytubefix` library, which is used for downloading media f
    If you want to download the video (in the highest available resolution), use the `-v` option followed by the YouTube video link:
    
    ```bash
-   python main.py -v <video link>
+   python main.py -v video_link
    ```
 
 ### Output Location
