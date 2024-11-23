@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if ! command -v ffmpeg &> /dev/null
+then
+    echo "ffmpeg could not be found, stopping the script."
+    exit 1
+fi
+
+
 python -m venu venu&> /dev/null
 
 source venv/bin/activate&> /dev/null

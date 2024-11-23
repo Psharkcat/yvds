@@ -46,7 +46,7 @@ def video_download(link):
         video_stream.download(filename = "video")
 
         # Download the audio
-        audio_stream = yt.streams.get_by_itag(140)
+        audio_stream = yt.streams.filter(only_audio=True).order_by('abr').desc().first()
         audio_stream.download(filename = "audio")
 
 
@@ -55,7 +55,7 @@ def video_download(link):
 
         ffmpeg_command = [
             "ffmpeg",
-            "-y",  # Overwrite existing files
+            "-y",  
             "-i", "video.mp4",
             "-i", "audio.m4a",
             "-c:v", "copy",

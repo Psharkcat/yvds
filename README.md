@@ -11,6 +11,7 @@ A simple Python script that allows you to download YouTube videos and audio file
 ## Requirements
 
 - Python 3.x
+- ffmpeg
 
 ## Installation
 
