@@ -4,25 +4,19 @@ import sys
 import platform
 
 def get_download_folder(media_type):
-
     user_home = os.path.expanduser("~")
 
     if platform.system() == "Windows":
-
         if media_type == 'audio':
             return os.path.join(user_home, "Music")
         elif media_type == 'video':
             return os.path.join(user_home, "Videos")
-
     elif platform.system() == "Linux":
-
         if media_type == 'audio':
             return os.path.join(user_home, "Music")
         elif media_type == 'video':
             return os.path.join(user_home, "Videos")
-
     elif platform.system() == "Darwin":
-
         if media_type == 'audio':
             return os.path.join(user_home, "Music")
         elif media_type == 'video':
