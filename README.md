@@ -11,7 +11,6 @@ A simple Python script that allows you to download YouTube videos and audio file
 ## Requirements
 
 - Python 3.x
-- **pytubefix** library: This is used to interact with the YouTube API to download videos and audio.
 
 ## Installation
 
