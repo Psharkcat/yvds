@@ -1,6 +1,6 @@
 #  Youtube Videos Download Script 
 
-A simple Python script that allows you to download YouTube videos and audio files. The script can be run from the command line and automatically saves the files to your system's default media folders (Music for audio and Videos for video).
+A simple Python script that allows you to download YouTube videos and audio files. The script can be run from the command line and automatically saves the files to your system's default media folders.
 
 ## Features
 
