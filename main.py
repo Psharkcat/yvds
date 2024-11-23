@@ -2,6 +2,7 @@ from pytubefix import YouTube
 import os
 import sys
 import platform
+import subprocess
 
 def get_download_folder(media_type):
     user_home = os.path.expanduser("~")
@@ -37,10 +38,35 @@ def audio_download(link):
 def video_download(link):
     try:
         yt = YouTube(link)
-        stream = yt.streams.get_highest_resolution()
+
+        # Download the video without the audio for better quality
+        print(f"Downloading video: ... ")
+        video_stream = yt.streams.filter(only_video=True).order_by("resolution").desc().first()
         download_folder = get_download_folder('video')
-        print(f"Downloading video: {stream.title}...")
-        stream.download(output_path=download_folder)
+        video_stream.download(filename = "video")
+
+        # Download the audio
+        audio_stream = yt.streams.get_by_itag(140)
+        audio_stream.download(filename = "audio")
+
+
+        # Combining the video and the audio
+        output_file = os.path.join(download_folder, f"{yt.title}.mp4")
+
+        ffmpeg_command = [
+            "ffmpeg",
+            "-y",  # Overwrite existing files
+            "-i", "video.mp4",
+            "-i", "audio.m4a",
+            "-c:v", "copy",
+            "-c:a", "aac",
+            output_file
+        ]
+        subprocess.run(ffmpeg_command, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)        
+        # Cleanup temporary files
+        os.remove("audio.m4a")
+        os.remove("video.mp4")
+        
         print("Done.")
     except Exception as e:
         print(f"Error: {e}")
