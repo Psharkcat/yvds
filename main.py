@@ -28,7 +28,7 @@ def audio_download(link):
     try:
         yt = YouTube(link)
         stream = yt.streams.get_by_itag(140)
-        print(f"Downloading audio: {stream.title}...")
+        print(f"Downloading audio: {yt.title}...")
         download_folder = get_download_folder('audio')
         stream.download(output_path=download_folder)
         print("Done.")
@@ -40,7 +40,7 @@ def video_download(link):
         yt = YouTube(link)
 
         # Download the video without the audio for better quality
-        print(f"Downloading video: ... ")
+        print(f"Downloading video: {yt.title} ... ")
         video_stream = yt.streams.filter(only_video=True).order_by("resolution").desc().first()
         download_folder = get_download_folder('video')
         video_stream.download(filename = "video")
