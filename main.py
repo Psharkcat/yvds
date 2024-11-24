@@ -44,25 +44,27 @@ def video_download(link):
         video_stream = yt.streams.filter(only_video=True).order_by("resolution").desc().first()
         download_folder = get_download_folder('video')
         video_stream.download(filename = "video")
-
+        video_url = video_stream.url 
+            
         # Download the audio
         audio_stream = yt.streams.filter(only_audio=True).order_by('abr').desc().first()
         audio_stream.download(filename = "audio")
 
-
         # Combining the video and the audio
         output_file = os.path.join(download_folder, f"{yt.title}.mp4")
-
+        print("Processing...")
         ffmpeg_command = [
             "ffmpeg",
             "-y",  
             "-i", "video.mp4",
             "-i", "audio.m4a",
-            "-c:v", "copy",
+            "-c:v", "libx264",
             "-c:a", "aac",
+            "-threads", "0",
             output_file
         ]
         subprocess.run(ffmpeg_command, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)        
+
         # Cleanup temporary files
         os.remove("audio.m4a")
         os.remove("video.mp4")
