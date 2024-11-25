@@ -26,7 +26,13 @@ A simple Python script that allows you to download YouTube videos and audio file
 
 ### Step 1: Open your terminal (Command Prompt, PowerShell, Terminal, etc.)
 
-### Step 2: Run the script with the appropriate command-line argument
+### Step 2: Set Up a Python Virtual Environment
+
+   ```bash
+   python -m venv venv
+   ```
+
+### Step 3: Run the script with the appropriate command-line argument
 
 - **To download audio:**
 

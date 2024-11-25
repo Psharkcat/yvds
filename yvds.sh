@@ -6,9 +6,6 @@ then
     exit 1
 fi
 
-
-python -m venu venu&> /dev/null
-
 source venv/bin/activate&> /dev/null
 
 pip install pytubefix&> /dev/null
